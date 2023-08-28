@@ -3,11 +3,12 @@ import Navbar from "../List/Header";
 import Copyright from "../List/Footer";
 import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import { Box, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, Container, IconButton, TableFooter, TablePagination } from "@mui/material";
+import { Fab, Box, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, Container, IconButton, TableFooter, TablePagination } from "@mui/material";
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
+import AddIcon from '@mui/icons-material/Add';
 
 
 
@@ -120,9 +121,10 @@ function Main() {
               <TableHead sx={{ backgroundColor: '#ff8a65' }}>
                 <TableRow>
                   <TableCell sx={{ width: 0 }}>userId</TableCell>
-                  <TableCell align="right">Id</TableCell>
-                  <TableCell align="right">Title</TableCell>
-                  <TableCell align="right">Body</TableCell>
+                  <TableCell align="center">Id</TableCell>
+                  <TableCell align="center">Title</TableCell>
+                  <TableCell align="center">Body</TableCell>
+                  <TableCell align="center">Aggiungi</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -138,6 +140,7 @@ function Main() {
                     </TableCell>
                     <TableCell align="right" sx={{ backgroundColor: '#fff176' }}>{data.title}</TableCell>
                     <TableCell align="right" sx={{ backgroundColor: '#ffd180' }}>{data.body}</TableCell>
+                    <TableCell align="center"><Fab color="primary" size="small" aria-label="add" sx={{ backgroundColor: '#fff176' }}><AddIcon /></Fab></TableCell>
 
 
                   </TableRow>
