@@ -3,11 +3,17 @@ import Navbar from "../List/Header";
 import Copyright from "../List/Footer";
 import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import { Fab, Box, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, Container, IconButton, TableFooter, TablePagination } from "@mui/material";
+import { Box, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, Container, IconButton, TableFooter, TablePagination, Button } from "@mui/material";
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
+
+
+import { useDispatch } from "react-redux";
+import { addtoCart } from "../../redux/cartSlice";
+
+
 import AddIcon from '@mui/icons-material/Add';
 
 
@@ -95,7 +101,7 @@ function Main() {
     setPage(0);
   };
 
-  const API = `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${rowsPerPage}`;
+  const API = `https://jsonplaceholder.typicode.com/posts?_page=${page + 1}&_limit=${rowsPerPage}`;
 
   useEffect(() => {
     fetch(API)
@@ -107,10 +113,17 @@ function Main() {
     [page, rowsPerPage]
   );
   console.log(data);
+
+  const dispatch = useDispatch()
+
   return (
     <div className="App">
+      <div>
+        <Navbar />
 
-      <Navbar />
+      </div>
+
+
 
 
       <Box sx={{ minHeight: 470 }}>
@@ -136,17 +149,18 @@ function Main() {
                   >
                     <TableCell>{data.userId}</TableCell>
                     <TableCell component="th" scope="row" sx={{ backgroundColor: '#ffd180' }}>
-                      {data.Id}
+                      {data.id}
                     </TableCell>
                     <TableCell align="right" sx={{ backgroundColor: '#fff176' }}>{data.title}</TableCell>
                     <TableCell align="right" sx={{ backgroundColor: '#ffd180' }}>{data.body}</TableCell>
-                    <TableCell align="center"><Fab color="primary" size="small" aria-label="add" sx={{ backgroundColor: '#fff176' }}><AddIcon /></Fab></TableCell>
+                    <TableCell align="center"><Button onClick={() => dispatch(addtoCart(data))}><AddIcon /></Button></TableCell>
 
 
                   </TableRow>
                 ))}
 
               </TableBody>
+
 
             </Table>
 

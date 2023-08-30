@@ -4,6 +4,7 @@ import Esempio from './Component/Path/Pagina';
 import Word from './Component/Spazio/Space';
 import Main from './Component/List/Body';
 import Trattino from './Component/SenzaTrattino/Body';
+import Checkout from './Component/List/Carrello/Checkout'
 
 function RouteApp() {
     return (
@@ -17,6 +18,8 @@ function RouteApp() {
             <Route path="/lista" element={<Main />} />
 
             <Route path="/trattino" element={<Trattino />} />
+
+            <Route path="/checkout" element={<Checkout />} />
 
         </Routes>
     );

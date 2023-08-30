@@ -5,6 +5,12 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
+
+
+
+import Carrello from "./Carrello/Kart";
+
+
 export default function Navbar() {
     return (
         <AppBar sx={{ position: 'relative' }}>
@@ -23,7 +29,11 @@ export default function Navbar() {
                     Lista Personalizzata
                 </Typography>
 
+                <Carrello />
+
             </Toolbar>
+
+
         </AppBar>
     );
 }
