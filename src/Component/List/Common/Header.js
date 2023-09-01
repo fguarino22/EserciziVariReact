@@ -3,15 +3,13 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Carrello from "../Carrello/Kart";
+import { useNavigate } from "react-router-dom";
 
 
-
-
-import Carrello from "./Carrello/Kart";
-
-
-export default function Navbar() {
+export default function Navbar({ VisibleElements }) {
+    let navigate = useNavigate();
     return (
         <AppBar sx={{ position: 'relative' }}>
             <Toolbar>
@@ -22,18 +20,27 @@ export default function Navbar() {
                     aria-label="menu"
                     sx={{ mr: 2 }}
                 >
-                    <MenuIcon />
+
+                    {VisibleElements.arrow && (
+                        < ArrowBackIcon onClick={() => navigate(-1)} />
+                    )
+                    }
+
+
+
                 </IconButton>
                 <Typography variant="h6"
                     component="div" sx={{ flexGrow: 1 }}>
                     Lista Personalizzata
                 </Typography>
 
-                <Carrello />
+                {VisibleElements.kart && (
+                    <Carrello />
+                )
+                }
+
 
             </Toolbar>
-
-
         </AppBar>
     );
 }

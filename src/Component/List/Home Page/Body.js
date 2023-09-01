@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../List/Header";
-import Copyright from "../List/Footer";
+import Navbar from "../Common/Header";
+import Copyright from "../Common/Footer";
 import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import { Box, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Paper, Container, IconButton, TableFooter, TablePagination, Button } from "@mui/material";
@@ -8,16 +8,9 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
-
-
 import { useDispatch } from "react-redux";
-import { addtoCart } from "../../redux/cartSlice";
-
-
+import { addtoCart } from "../../../redux/cartSlice";
 import AddIcon from '@mui/icons-material/Add';
-
-
-
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -89,8 +82,8 @@ function Main() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
+  /*const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;*/
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -110,7 +103,7 @@ function Main() {
       })
       .then((response) => setData(response)).catch(error => console.error('Qualcosa è andato storto' + error));
   },
-    [page, rowsPerPage]
+    [API]
   );
   console.log(data);
 
@@ -119,12 +112,8 @@ function Main() {
   return (
     <div className="App">
       <div>
-        <Navbar />
-
+        <Navbar VisibleElements={{ arrow: false, kart: true }} />
       </div>
-
-
-
 
       <Box sx={{ minHeight: 470 }}>
 
@@ -153,15 +142,10 @@ function Main() {
                     </TableCell>
                     <TableCell align="right" sx={{ backgroundColor: '#fff176' }}>{data.title}</TableCell>
                     <TableCell align="right" sx={{ backgroundColor: '#ffd180' }}>{data.body}</TableCell>
-                    <TableCell align="center"><Button onClick={() => dispatch(addtoCart(data))}><AddIcon /></Button></TableCell>
-
-
-                  </TableRow>
+                    <TableCell align="center"><Button onClick={() => dispatch(addtoCart(data))}><AddIcon /></Button></TableCell>                  </TableRow>
                 ))}
 
               </TableBody>
-
-
             </Table>
 
             <TableFooter>
@@ -189,13 +173,8 @@ function Main() {
         </Container>
       </Box>
 
-
-
       <Copyright />
     </div>
-
-
-
   );
 
 }

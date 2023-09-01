@@ -7,7 +7,7 @@ function Carrello() {
     const cartItems = useSelector(state => state.cart.cart)
     return (
         <div>
-            <Link to='/Checkout'>
+            <Link to='/checkout'>
 
                 <h3><AddShoppingCartIcon /> <small>{cartItems.length}</small></h3>
             </Link>
